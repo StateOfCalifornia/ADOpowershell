@@ -123,9 +123,9 @@ $newSG2 = @{
     securityGroupName        = "Foo Bar2";
     securityGroupDescription = "Foo bar 2 description can go here";
     memberArray              = @(
-        "ladunlap@microsoft.com", 
-        "laurenwdunlap@gmail.com",
-        "laviebonnee@gmail.com"
+        "johnsmith@microsoft.com", 
+        "johnsmith@gmail.com",
+        "johnsmith123@gmail.com"
     );
 };
 New-AzDevOpsSecurityGroup @newSG2;
@@ -136,8 +136,8 @@ $addMembers = @{
     azDevOpsProject   = "Project";
     securityGroupName = "Foo Bar2";
     memberArray       = @(
-        "ladunlap@microsoft.com", 
-        "laurenwdunlap@gmail.com"
+        "johnsmith@microsoft.com", 
+        "johnsmith@gmail.com"
     );
 };
 Add-AzDevOpsSecurityGroupMembers @addMembers;
