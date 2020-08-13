@@ -1,5 +1,5 @@
 ﻿az login
-az extension add --name "azure-devops"
+#az extension add --name "azure-devops"
     
 function New-AzDevOpsSecurityGroup 
 {
@@ -112,9 +112,11 @@ $newSG2 = @{
     azDevOpsOrgUrl           = "https://calenterprise.visualstudio.com/";
     azDevOpsProject          = "SolutionsArchitect.devOps.OET.engineers.team";
     securityGroupName        = "Contribute-NoDelete";
-    securityGroupDescription = "Test";
+    securityGroupDescription = "Foo bar 2 description can go here";
     memberArray              = @(
-        "chad.bratton@state.ca.gov"
+        "johnsmith@microsoft.com", 
+        "johnsmith@gmail.com",
+        "johnsmith123@gmail.com"
     );
 };
 New-AzDevOpsSecurityGroup @newSG2;
