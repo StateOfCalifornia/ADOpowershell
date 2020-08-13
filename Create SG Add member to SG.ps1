@@ -107,37 +107,16 @@ function Add-AzDevOpsSecurityGroupMembers
     Write-Output $($addedMembers | ConvertTo-Json -Depth 10);
 }
 
-# create security group
-$newSG = @{
-    azDevOpsOrgUrl           = "https://dev.azure.com/org";
-    azDevOpsProject          = "Project";
-    securityGroupName        = "Foo Bar";
-    securityGroupDescription = "Foo bar description can go here";
-};
-New-AzDevOpsSecurityGroup @newSG;
-
 # create security group and add members
 $newSG2 = @{
-    azDevOpsOrgUrl           = "https://dev.azure.com/org";
-    azDevOpsProject          = "Project";
-    securityGroupName        = "Foo Bar2";
-    securityGroupDescription = "Foo bar 2 description can go here";
+    azDevOpsOrgUrl           = "https://calenterprise.visualstudio.com/";
+    azDevOpsProject          = "SolutionsArchitect.devOps.OET.engineers.team";
+    securityGroupName        = "Contribute-NoDelete";
+    securityGroupDescription = "Test";
     memberArray              = @(
-        "johnsmith@microsoft.com", 
-        "johnsmith@gmail.com",
-        "johnsmith123@gmail.com"
+        "chad.bratton@state.ca.gov"
     );
 };
 New-AzDevOpsSecurityGroup @newSG2;
 
-# add members to security group
-$addMembers = @{
-    azDevOpsOrgUrl    = "https://dev.azure.com/org";
-    azDevOpsProject   = "Project";
-    securityGroupName = "Foo Bar2";
-    memberArray       = @(
-        "johnsmith@microsoft.com", 
-        "johnsmith@gmail.com"
-    );
-};
-Add-AzDevOpsSecurityGroupMembers @addMembers;
+
