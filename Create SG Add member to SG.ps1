@@ -1,7 +1,4 @@
-﻿az login
-#az extension add --name "azure-devops"
-    
-function New-AzDevOpsSecurityGroup 
+﻿function New-AzDevOpsSecurityGroup 
 {
     [CmdletBinding()]
     param
@@ -110,15 +107,14 @@ function Add-AzDevOpsSecurityGroupMembers
 # create security group and add members
 $newSG2 = @{
     azDevOpsOrgUrl           = "https://calenterprise.visualstudio.com/";
-    azDevOpsProject          = "SolutionsArchitect.devOps.OET.engineers.team";
+    azDevOpsProject          = "TestThinkSmart";
     securityGroupName        = "Contribute-NoDelete";
     securityGroupDescription = "Foo bar 2 description can go here";
     memberArray              = @(
-        "johnsmith@microsoft.com", 
-        "johnsmith@gmail.com",
-        "johnsmith123@gmail.com"
+        "chad.bratton@state.ca.gov"
     );
 };
 New-AzDevOpsSecurityGroup @newSG2;
+
 
 

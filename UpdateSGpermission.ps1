@@ -24,18 +24,18 @@ function Update-OrganizationSG
     )
 
     $subject = az devops security group list `
-        --org "https://dev.azure.com/$azDevOpsOrg/" `
+        --org "$azDevOpsOrg/" `
         --scope organization `
         --subject-types vssgp `
         --query "graphGroups[?@.principalName == '[$azDevOpsOrg]\Project Collection Administrators'].descriptor | [0]"
 
     $namespaceId = az devops security permission namespace list `
-        --org "https://dev.azure.com/$azDevOpsOrg/" `
+        --org "$azDevOpsOrg/" `
         --query "[?@.name == 'Git Repositories'].namespaceId | [0]"
 
     $bit = az devops security permission namespace show `
         --namespace-id $namespaceId `
-        --org "https://dev.azure.com/$azDevOpsOrg/" `
+        --org "$azDevOpsOrg/" `
         --query "[0].actions[?@.name == 'PullRequestBypassPolicy'].bit | [0]"
 
     az devops security permission update `
@@ -66,7 +66,7 @@ function Update-ProjectSG
 
     # get security group descriptor ID
     $subject = az devops security group list `
-        --org "https://dev.azure.com/$azDevOpsOrg/" `
+        --org "$azDevOpsOrg/" `
         --project $azDevOpsProject `
         --scope project `
         --subject-types vssgp `
@@ -76,7 +76,7 @@ function Update-ProjectSG
     # optionally, view entire list with --output table
     # https://docs.microsoft.com/en-us/azure/devops/cli/security_tokens?view=azure-devops
     $namespaceId = az devops security permission namespace list `
-        --org "https://dev.azure.com/$azDevOpsOrg/" `
+        --org "$azDevOpsOrg/" `
         --query "[?@.name == 'ReleaseManagement'].namespaceId | [1]"
 
     # identify setting to flip 
@@ -84,7 +84,7 @@ function Update-ProjectSG
     # e.g. Release:2 edit release pipeline, 4, delete release pipeline
     $bit = az devops security permission namespace show `
         --namespace-id $namespaceId `
-        --org "https://dev.azure.com/$azDevOpsOrg/" `
+        --org "$azDevOpsOrg/" `
         --query "[0].actions[?@.name == 'EditReleaseDefinition'].bit | [0] "
     
     # finally, update the target permission on the target subject(security group)
@@ -97,15 +97,15 @@ function Update-ProjectSG
         --token "repoV2/" `
         --deny-bit $bit `
         --merge true `
-        --org "https://dev.azure.com/$azDevOpsOrg/"
+        --org "$azDevOpsOrg/"
 
 }
 
 # target members of a security group in a project
 $targetMembers = @{
-    azDevOpsOrg              = "orgName";
-    azDevOpsProject          = "projectName";
-    SecurityGroupName        = "Contributors"
+    azDevOpsOrg              = "https://calenterprise.visualstudio.com/";
+    azDevOpsProject          = "TestThinkSmart";
+    SecurityGroupName        = "Contribute-NoDelete"
 };
 
 Update-ProjectSG @targetMembers;
